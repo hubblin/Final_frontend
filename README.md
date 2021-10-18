@@ -37,3 +37,4 @@
 - node.js koa를 이용한 backend 구현
 - mongo DB 이용
 - redux와 saga를 이용한 상태관리, axios를 이용한 통신 구현
+- jwt 방식으로 로그인 구현
