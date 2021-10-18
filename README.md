@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# 졸업작품용 리액트 프로젝트 입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 구성도
 
-## Available Scripts
+![구성도](./md/그림10.png)
+<br/><br/>
 
-In the project directory, you can run:
+## 동작 화면
 
-### `yarn start`
+|                             |                             |
+| :-------------------------: | :-------------------------: |
+| ![동작화면](./md/그림1.png) | ![동작화면](./md/그림2.png) |
+| ![동작화면](./md/그림3.png) | ![동작화면](./md/그림4.png) |
+| ![동작화면](./md/그림5.png) | ![동작화면](./md/그림6.png) |
+| ![동작화면](./md/그림7.png) | ![동작화면](./md/그림8.png) |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+자신이 원하는 상품을 그림으로 그려 검색할 수 있는 시스템 입니다.
+<br/>
+**작업시간** : 약 2달  
+**링크** : -
+<br/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 개요
 
-### `yarn test`
+- 서비스 : tansorflow를 이용한 검색 기능
+- 개발 환경 : visual code
+- 개발 언어 : javascript
+- 기타 환경 : Git
+- 외부 지원 : react.js, tansorflow, object detection
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
 
-### `yarn build`
+## 내용
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- tansorflow를 이용하여 object detection 모델 구현
+- react를 이용한 frontend 구현
+- node.js koa를 이용한 backend 구현
+- mongo DB 이용
+- redux와 saga를 이용한 상태관리, axios를 이용한 통신 구현
