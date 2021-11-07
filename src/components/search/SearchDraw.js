@@ -1,4 +1,4 @@
-import React, {createRef, useEffect} from 'react';
+import React, {createRef, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import * as tf from "@tensorflow/tfjs";
 
@@ -50,11 +50,15 @@ const DrawFinishButton = styled.button`
     &:hover{
         background: ${palette.cyan[4]};
     }
+    pointer-events: ${(props )=>`${props.activeProps}`};
 `
 
-const SearchDraw = ({onInputTags,drawStore, onBackupDraw,onClearBackUp}) =>{
+
+let buttonActive = 'auto';
+const SearchDraw = ({ onInputTags, drawStore, onBackupDraw, onClearBackUp }) => {
     let canvas;
     let canvasRef = createRef();
+    
 
     let drawBackup = new Array();
 
@@ -67,6 +71,7 @@ const SearchDraw = ({onInputTags,drawStore, onBackupDraw,onClearBackUp}) =>{
     let ctx;
 
     let getResult = '';
+
 
     useEffect(()=>{
         canvas = canvasRef.current;
@@ -137,6 +142,7 @@ const SearchDraw = ({onInputTags,drawStore, onBackupDraw,onClearBackUp}) =>{
 
     //캔버스 다시 흰색 바탕으로 채우기
     const clearCanvas = () => {
+        buttonActive = 'auto';
         if(!canvasRef.current){
             return;
         }
@@ -165,8 +171,12 @@ const SearchDraw = ({onInputTags,drawStore, onBackupDraw,onClearBackUp}) =>{
         })
     }
 
-    const onCheck = async(e) =>{
+    const onCheck = async (e) => {
+       
         e.preventDefault();
+        let tartget = e.currentTarget;
+        tartget.disabled = true;
+        
         const nets = await tf.loadGraphModel('https://cloud-real-time-tensorflow-js-model.s3.jp-tok.cloud-object-storage.appdomain.cloud/model.json');
         const ImageData = canvas.toDataURL();
         downloadImage(ImageData);
@@ -187,7 +197,7 @@ const SearchDraw = ({onInputTags,drawStore, onBackupDraw,onClearBackUp}) =>{
 
         canvas = canvasRef.current;
         ctx = canvas.getContext("2d");
-        getResult = drawRect(boxes[0], classes[0], scores[0], 0.9, 800, 600, ctx, getResult)
+        getResult  = drawRect(boxes[0], classes[0], scores[0], 0.9, 800, 600, ctx, getResult)
         
 
         tf.dispose(timg)
@@ -196,14 +206,19 @@ const SearchDraw = ({onInputTags,drawStore, onBackupDraw,onClearBackUp}) =>{
         tf.dispose(expanded)
         tf.dispose(obj)
         saveCanvas();
-        const arr = getResult.split(",");
-        const set = new Set(arr);
-        const uniqeArr = [...set];
-        
+        let uniqeArr = [];
+        if (getResult === '') {
+            console.log('그림속에서 특징을 찾아내지 못했습니다.');
+            buttonActive = 'auto';
+        } else {
+            const arr = getResult.split(",");
+            const set = new Set(arr);
+            uniqeArr = [...set];
+        }
 
-        
         onBackupDraw(ctx.getImageData(0,0, canvas.width, canvas.height));
         onInputTags(uniqeArr);
+        tartget.disabled = false;
     }
 
 
@@ -215,7 +230,7 @@ const SearchDraw = ({onInputTags,drawStore, onBackupDraw,onClearBackUp}) =>{
                 <button onClick={prevCanvas}>뒤로 돌리기</button>
                 <button onClick={clearCanvas}>캔버스 초기화</button>
             </DrawButtonBlock>
-            <DrawFinishButton onClick={onCheck}>다 그렸어요</DrawFinishButton>
+            <DrawFinishButton onClick={onCheck} activeProps={ buttonActive}>다 그렸어요</DrawFinishButton>
         </SearchDrawBlock>
     )
 }
