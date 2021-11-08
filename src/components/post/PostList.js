@@ -109,7 +109,7 @@ const PostItem = ({post}) => {
         <Link to={`/@${user.username}/${_id}`}>
             <CardLayout>
                 <div className="img-size">
-                    <img src={ defaultImg } className="image"/>
+                    <img src={ defaultImg } className="image" alt=""/>
                 </div>
                 
                 <div className="container">

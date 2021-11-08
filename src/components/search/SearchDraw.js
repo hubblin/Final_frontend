@@ -61,6 +61,7 @@ const SearchDraw = ({ onInputTags, drawStore, onBackupDraw, onClearBackUp }) => 
     
 
     let drawBackup = new Array();
+    const [noContents, setNoContents] = useState('');
 
     let pos ={
         drawable : false,
@@ -132,7 +133,8 @@ const SearchDraw = ({ onInputTags, drawStore, onBackupDraw, onClearBackUp }) => 
     }
 
     //뒤로 돌리기
-    function prevCanvas(event){
+    function prevCanvas(event) {
+        setNoContents('');
         event.preventDefault();
         console.log(drawBackup);
         if(drawBackup.length > 0){
@@ -142,6 +144,7 @@ const SearchDraw = ({ onInputTags, drawStore, onBackupDraw, onClearBackUp }) => 
 
     //캔버스 다시 흰색 바탕으로 채우기
     const clearCanvas = () => {
+        setNoContents('');
         buttonActive = 'auto';
         if(!canvasRef.current){
             return;
@@ -174,6 +177,7 @@ const SearchDraw = ({ onInputTags, drawStore, onBackupDraw, onClearBackUp }) => 
     const onCheck = async (e) => {
        
         e.preventDefault();
+        setNoContents('');
         let tartget = e.currentTarget;
         tartget.disabled = true;
         
@@ -208,7 +212,7 @@ const SearchDraw = ({ onInputTags, drawStore, onBackupDraw, onClearBackUp }) => 
         saveCanvas();
         let uniqeArr = [];
         if (getResult === '') {
-            console.log('그림속에서 특징을 찾아내지 못했습니다.');
+            setNoContents('그림 속에서 특징을 검출하지 못했습니다.');
             buttonActive = 'auto';
         } else {
             const arr = getResult.split(",");
@@ -225,7 +229,8 @@ const SearchDraw = ({ onInputTags, drawStore, onBackupDraw, onClearBackUp }) => 
 
     return(
         <SearchDrawBlock>
-            <canvas className="canvasStyle" ref={canvasRef} width="800" height="600"/>
+            <canvas className="canvasStyle" ref={canvasRef} width="800" height="600" />
+            <div style={{color: 'red', textAlign : 'center'}}>{ noContents}</div>
             <DrawButtonBlock>
                 <button onClick={prevCanvas}>뒤로 돌리기</button>
                 <button onClick={clearCanvas}>캔버스 초기화</button>
